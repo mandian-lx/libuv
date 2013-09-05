@@ -15,7 +15,7 @@ URL:		http://nodejs.org/
 Source0:	http://libuv.org/dist/v%{version}/%{name}-v%{version}.tar.gz
 Source2:	libuv.pc.in
 
-#BuildRequires: gyp
+BuildRequires: gyp
 
 %description
 libuv is a new platform layer for Node. Its purpose is to abstract IOCP on
