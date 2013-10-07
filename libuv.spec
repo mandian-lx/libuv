@@ -1,10 +1,10 @@
-%define sover 0.10
+%define sover 0.11
 %define api 1.0
 %define libname %mklibname uv %{sover}
 %define devname %mklibname -d uv
 
 Name:		libuv
-Version:	0.10.14
+Version:	0.11.13
 Release:	1
 Summary:	Platform layer for node.js
 
@@ -42,34 +42,21 @@ Development libraries for libuv
 %setup -q -n %{name}-v%{version}
 
 %build
+echo "m4_define([UV_EXTRA_AUTOMAKE_FLAGS], [serial-tests])" \
+        > m4/libuv-extra-automake-flags.m4
+libtoolize --install --copy --force --automake
+aclocal -I m4
+autoconf
+automake --add-missing --copy --foreign
+
 export CFLAGS='%{optflags}'
 export CXXFLAGS='%{optflags}'
-./gyp_uv -Dcomponent=shared_library -Dlibrary=shared_library
+%configure2_5x
 
-%make V=1 -C out BUILDTYPE=Release
+%make
 
 %install
-# Copy the shared lib into the libdir
-mkdir -p %{buildroot}/%{_libdir}/
-cp out/Release/obj.target/libuv.so %{buildroot}/%{_libdir}/libuv.so.%{sover}
-pushd %{buildroot}/%{_libdir}/
-ln -s libuv.so.%{sover} libuv.so.0
-ln -s libuv.so.%{sover} libuv.so
-popd
-
-# Copy the headers into the include path
-mkdir -p %{buildroot}/%{_includedir}/uv-private
-
-cp include/uv.h \
-   %{buildroot}/%{_includedir}
-
-cp \
-   include/uv-private/ngx-queue.h \
-   include/uv-private/tree.h \
-   include/uv-private/uv-linux.h \
-   include/uv-private/uv-unix.h \
-   %{buildroot}/%{_includedir}/uv-private
-
+%makeinstall_std
 # Create the pkgconfig file
 mkdir -p %{buildroot}/%{_libdir}/pkgconfig
 
@@ -93,5 +80,4 @@ sed -e "s#@prefix@#%{_prefix}#g" \
 %doc README.md AUTHORS LICENSE
 %{_libdir}/libuv.so
 %{_libdir}/pkgconfig/libuv.pc
-%{_includedir}/uv.h
-%{_includedir}/uv-private
+%{_includedir}/uv*.h
