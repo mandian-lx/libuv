@@ -4,7 +4,7 @@
 %define devname %mklibname -d uv
 
 Name:		libuv
-Version:	0.11.13
+Version:	0.11.21
 Release:	1
 Summary:	Platform layer for node.js
 
