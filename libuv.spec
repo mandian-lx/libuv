@@ -1,7 +1,7 @@
-%define sover 0.11
-%define api 1.0
-%define libname %mklibname uv %{sover}
-%define devname %mklibname -d uv
+%define	sover	0.11
+%define	api	1.0
+%define	libname	%mklibname uv %{sover}
+%define	devname	%mklibname -d uv
 
 Name:		libuv
 Version:	0.11.21
@@ -15,7 +15,7 @@ URL:		http://nodejs.org/
 Source0:	http://libuv.org/dist/v%{version}/%{name}-v%{version}.tar.gz
 Source2:	libuv.pc.in
 
-BuildRequires: gyp
+BuildRequires:	gyp
 
 %description
 libuv is a new platform layer for Node. Its purpose is to abstract IOCP on
@@ -23,19 +23,19 @@ Windows and libev on Unix systems. We intend to eventually contain all platform
 differences in this library.
 
 
-%package -n %{libname}
-Summary:    %{summary}
-Group:      System/Libraries
+%package -n	%{libname}
+Summary:	%{summary}
+Group:		System/Libraries
 
-%description -n %{libname}
+%description -n	%{libname}
 %{summary}
 
 %package -n	%{devname}
 Summary:	Development libraries for libuv
 Group:		Development/C
-Requires: %{libname} = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
 
-%description -n %{devname}
+%description -n	%{devname}
 Development libraries for libuv
 
 %prep
