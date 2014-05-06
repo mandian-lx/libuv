@@ -40,14 +40,14 @@ Development libraries for libuv
 
 %prep
 %setup -q -n %{name}-v%{version}
-
-%build
 echo "m4_define([UV_EXTRA_AUTOMAKE_FLAGS], [serial-tests])" \
         > m4/libuv-extra-automake-flags.m4
 libtoolize --install --copy --force --automake
 aclocal -I m4
 autoconf
 automake --add-missing --copy --foreign
+
+%build
 
 export CFLAGS='%{optflags}'
 export CXXFLAGS='%{optflags}'
