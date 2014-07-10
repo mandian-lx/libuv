@@ -4,7 +4,7 @@
 %define	devname	%mklibname -d uv
 
 Name:		libuv
-Version:	0.11.21
+Version:	0.11.25
 Release:	1
 Summary:	Platform layer for node.js
 
@@ -51,9 +51,8 @@ automake --add-missing --copy --foreign
 
 export CFLAGS='%{optflags}'
 export CXXFLAGS='%{optflags}'
-%configure2_5x
-
-%make
+%configure
+%make CC=%{__cc}
 
 %install
 %makeinstall_std
