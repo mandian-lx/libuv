@@ -5,7 +5,7 @@
 
 Name:		libuv
 Version:	0.11.25
-Release:	2
+Release:	3
 Summary:	Platform layer for node.js
 
 Group:		Development/Other
