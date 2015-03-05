@@ -1,11 +1,10 @@
-%define	sover	0.11
-%define	api	1.0
-%define	libname	%mklibname uv %{sover}
-%define	devname	%mklibname -d uv
+%define sover 0.11
+%define libname %mklibname uv %{sover}
+%define devname %mklibname -d u
 
 Name:		libuv
-Version:	0.11.25
-Release:	3
+Version:	0.11.29
+Release:	1
 Summary:	Platform layer for node.js
 
 Group:		Development/Other
@@ -23,20 +22,20 @@ Windows and libev on Unix systems. We intend to eventually contain all platform
 differences in this library.
 
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	%{summary}
 Group:		System/Libraries
 
 %description -n	%{libname}
-%{summary}
+%{summary}.
 
-%package -n	%{devname}
+%package -n %{devname}
 Summary:	Development libraries for libuv
 Group:		Development/C
 Requires:	%{libname} = %{EVRD}
 
 %description -n	%{devname}
-Development libraries for libuv
+Development libraries for libuv.
 
 %prep
 %setup -q -n %{name}-v%{version}
@@ -73,7 +72,7 @@ sed -e "s#@prefix@#%{_prefix}#g" \
 #./run-benchmarks
 
 %files -n %{libname}
-%{_libdir}/libuv.so.*
+%{_libdir}/libuv.so.{major}.*
 
 %files -n %{devname}
 %doc README.md AUTHORS LICENSE
