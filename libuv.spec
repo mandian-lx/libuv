@@ -1,6 +1,6 @@
-%define sover 0.11
-%define libname %mklibname uv %{sover}
-%define devname %mklibname -d u
+%define major 11
+%define libname %mklibname uv %{major}
+%define devname %mklibname uv -d
 
 Name:		libuv
 Version:	0.11.29
