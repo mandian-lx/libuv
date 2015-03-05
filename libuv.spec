@@ -72,7 +72,7 @@ sed -e "s#@prefix@#%{_prefix}#g" \
 #./run-benchmarks
 
 %files -n %{libname}
-%{_libdir}/libuv.so.%{major}.*
+%{_libdir}/libuv.so.%{major}*
 
 %files -n %{devname}
 %doc README.md AUTHORS LICENSE
