@@ -4,7 +4,7 @@
 
 Name:		libuv
 Version:	0.11.29
-Release:	1
+Release:	0.1
 Summary:	Platform layer for node.js
 
 Group:		Development/Other
@@ -50,7 +50,7 @@ automake --add-missing --copy --foreign
 
 export CFLAGS='%{optflags}'
 export CXXFLAGS='%{optflags}'
-%configure
+%configure2_5x --disable-static
 %make CC=%{__cc}
 
 %install
