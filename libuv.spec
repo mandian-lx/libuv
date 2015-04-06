@@ -1,11 +1,11 @@
-%define major 11
+%define major 1
 %define libname %mklibname uv %{major}
 %define devname %mklibname uv -d
 
 Name:		libuv
-Version:	0.11.29
+Version:	1.4.2
 Release:	1
-Summary:	Platform layer for node.js
+Summary:	Platform layer for node.js and neovim
 
 Group:		Development/Other
 # the licensing breakdown is described in detail in the LICENSE file
@@ -17,10 +17,9 @@ Source2:	libuv.pc.in
 BuildRequires:	gyp
 
 %description
-libuv is a new platform layer for Node. Its purpose is to abstract IOCP on
-Windows and libev on Unix systems. We intend to eventually contain all platform
-differences in this library.
+libuv is a new platform layer for Node providing a cross-platform event loop.
 
+It is currently used by node.js and neovim.
 
 %package -n %{libname}
 Summary:	%{summary}
