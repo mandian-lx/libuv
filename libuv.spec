@@ -3,16 +3,15 @@
 %define devname %mklibname uv -d
 
 Name:		libuv
-Version:	1.4.2
-Release:	2
+Version:	1.7.5
+Release:	1
 Summary:	Platform layer for node.js and neovim
 
 Group:		Development/Other
 # the licensing breakdown is described in detail in the LICENSE file
 License:	MIT and BSD and ISC
 URL:		http://nodejs.org/
-Source0:	http://libuv.org/dist/v%{version}/%{name}-v%{version}.tar.gz
-Source2:	libuv.pc.in
+Source0:	http://dist.libuv.org/dist/v%{version}/%{name}-v%{version}.tar.gz
 
 BuildRequires:	gyp
 
@@ -54,15 +53,6 @@ export CXXFLAGS='%{optflags}'
 
 %install
 %makeinstall_std
-# Create the pkgconfig file
-mkdir -p %{buildroot}/%{_libdir}/pkgconfig
-
-sed -e "s#@prefix@#%{_prefix}#g" \
-    -e "s#@exec_prefix@#%{_exec_prefix}#g" \
-    -e "s#@libdir@#%{_libdir}#g" \
-    -e "s#@includedir@#%{_includedir}#g" \
-    -e "s#@version@#%{version}#g" \
-    %SOURCE2 > %{buildroot}/%{_libdir}/pkgconfig/libuv.pc
 
 %check
 # Tests are currently disabled because some require network access
