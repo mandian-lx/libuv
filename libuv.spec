@@ -4,7 +4,7 @@
 
 Name:		libuv
 Version:	1.7.5
-Release:	2
+Release:	3
 Summary:	Platform layer for node.js and neovim
 
 Group:		Development/Other
