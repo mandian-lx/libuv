@@ -3,8 +3,8 @@
 %define devname %mklibname uv -d
 
 Name:		libuv
-Version:	1.7.5
-Release:	3
+Version:	1.9.0
+Release:	1
 Summary:	Platform layer for node.js and neovim
 
 Group:		Development/Other
