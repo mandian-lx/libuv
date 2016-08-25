@@ -3,7 +3,7 @@
 %define devname %mklibname uv -d
 
 Name:		libuv
-Version:	1.9.0
+Version:	1.9.1
 Release:	1
 Summary:	Platform layer for node.js and neovim
 
@@ -13,7 +13,7 @@ License:	MIT and BSD and ISC
 URL:		http://nodejs.org/
 Source0:	http://dist.libuv.org/dist/v%{version}/%{name}-v%{version}.tar.gz
 
-BuildRequires:	gyp
+#BuildRequires:	gyp
 
 %description
 libuv is a new platform layer for Node providing a cross-platform event loop.
