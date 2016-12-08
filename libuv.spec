@@ -1,26 +1,24 @@
-%define major 11
+%define major 1
 %define libname %mklibname uv %{major}
 %define devname %mklibname uv -d
 
 Name:		libuv
-Version:	0.11.29
-Release:	0.1
-Summary:	Platform layer for node.js
+Version:	1.9.1
+Release:	1
+Summary:	Platform layer for node.js and neovim
 
 Group:		Development/Other
 # the licensing breakdown is described in detail in the LICENSE file
 License:	MIT and BSD and ISC
 URL:		http://nodejs.org/
-Source0:	http://libuv.org/dist/v%{version}/%{name}-v%{version}.tar.gz
-Source2:	libuv.pc.in
+Source0:	http://dist.libuv.org/dist/v%{version}/%{name}-v%{version}.tar.gz
 
-BuildRequires:	gyp
+#BuildRequires:	gyp
 
 %description
-libuv is a new platform layer for Node. Its purpose is to abstract IOCP on
-Windows and libev on Unix systems. We intend to eventually contain all platform
-differences in this library.
+libuv is a new platform layer for Node providing a cross-platform event loop.
 
+It is currently used by node.js and neovim.
 
 %package -n %{libname}
 Summary:	%{summary}
@@ -50,20 +48,11 @@ automake --add-missing --copy --foreign
 
 export CFLAGS='%{optflags}'
 export CXXFLAGS='%{optflags}'
-%configure2_5x --disable-static
+%configure --disable-static
 %make CC=%{__cc}
 
 %install
 %makeinstall_std
-# Create the pkgconfig file
-mkdir -p %{buildroot}/%{_libdir}/pkgconfig
-
-sed -e "s#@prefix@#%{_prefix}#g" \
-    -e "s#@exec_prefix@#%{_exec_prefix}#g" \
-    -e "s#@libdir@#%{_libdir}#g" \
-    -e "s#@includedir@#%{_includedir}#g" \
-    -e "s#@version@#%{version}#g" \
-    %SOURCE2 > %{buildroot}/%{_libdir}/pkgconfig/libuv.pc
 
 %check
 # Tests are currently disabled because some require network access
